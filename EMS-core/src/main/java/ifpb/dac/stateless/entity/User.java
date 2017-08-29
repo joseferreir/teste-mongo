@@ -6,38 +6,56 @@
 package ifpb.dac.stateless.entity;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.io.Serializable;
 import java.util.Map;
 import java.util.Objects;
+import org.json.JSONObject;
 
 /**
  *
  * @author jose2
  */
-
 public class User implements Serializable {
+
     private Gson gson;
     private String nome;
     private String email;
     private CPF cpf;
     private String senha;
-    private Map<String,Object> opcionais;
+    private Map<String, Object> opcionais;
 
     private User(String nome, String email, CPF cpf, String senha, Map<String, Object> opcionais) {
-       
+
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
         this.senha = senha;
         this.opcionais = opcionais;
     }
-     public static User of(String nome, String email, CPF cpf, String senha, Map<String, Object> opcionais) {
-       
-    
-        return new User(nome, email, cpf, senha, opcionais);
-    }
-    
 
+    public static User of(String nome, String email, CPF cpf, String senha, Map<String, Object> opcionais) {
+
+        User user = new User(nome, email, cpf, senha, opcionais);
+
+        if (!user.cpf.isValid()) {
+            return user;
+        }
+        return null;
+    }
+
+    public static User gsonOf(Gson dados) {
+        User user = new User().convertGsonToUser(dados);
+
+        if (!user.cpf.isValid()) {
+            return user;
+        }
+        return null;
+    }
+
+    private User() {
+
+    }
 
     public String getNome() {
         return nome;
@@ -54,14 +72,17 @@ public class User implements Serializable {
     public Map<String, Object> getOpcionais() {
         return opcionais;
     }
-    public String convertUserToGson(){
-          gson= new Gson();
-        return gson.toJson(this);
+
+    public Gson convertUserToGson() {
+      
+Gson  gson = new Gson().fromJson(this.toString(), Gson.class);
+return gson;
     }
-     public User convertGsonToUser(Gson uGson){
-         gson = new Gson();
+
+    public User convertGsonToUser(Gson uGson) {
+        gson = new Gson();
         return gson.fromJson(uGson.toString(), User.class);
-        
+
     }
 
     public Gson getGson() {
@@ -79,9 +100,6 @@ public class User implements Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-     
-
-  
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -134,6 +152,10 @@ public class User implements Serializable {
         }
         return true;
     }
-      
-    
+
+    @Override
+    public String toString() {
+        return "User{" + "nome=" + nome + ", email=" + email + ", cpf=" + cpf + ", senha=" + senha + ", opcionais=" + opcionais + '}';
+    }
+
 }
