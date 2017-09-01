@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ifpb.dac.stateless.infra;
+package ifpb.tcc.ems.infra;
 
 import com.mongodb.DB;
 import com.mongodb.Mongo;

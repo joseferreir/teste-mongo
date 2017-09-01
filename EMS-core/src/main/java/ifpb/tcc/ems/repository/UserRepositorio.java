@@ -3,47 +3,51 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ifpb.dac.stateless.repository;
+package ifpb.tcc.ems.repository;
 
+import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
-import ifpb.dac.stateless.CrudEntity;
-import ifpb.dac.stateless.entity.User;
-import ifpb.dac.stateless.infra.ConectionMongoDB;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
+import ifpb.tcc.ems.entity.CPF;
+import ifpb.tcc.ems.entity.User;
+import ifpb.tcc.ems.infra.ConectionMongoDB;
+import ifpb.tcc.ems.interface1.IFUser;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Local;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author jose2
  */
-public class UserRepositorio implements CrudEntity<User>{
+@Stateless
+@Local()
+public class UserRepositorio implements IFUser{
     private ConectionMongoDB cmdb;
+
+    public UserRepositorio() throws IOException, URISyntaxException {
+        cmdb = new ConectionMongoDB("tcc");
+    }
+    
 
     @Override
     public void add(User entity) {
-        try {
-            cmdb = new ConectionMongoDB("aula");
-                    DB db =cmdb.getConnection();
-                    DBCollection table = db.getCollection("bdUser");
-                    //
-                    BasicDBObject document = new BasicDBObject("_id", entity.getCpf().formatado());
-                    document.put("nome", entity.getNome());
-                    document.put("email",entity.getEmail() );
-                    document.put("senha",entity.getSenha());
-                    document.put("op",entity.getOpcionais());
-                    
-                    table.insert(document).getN();
-                   
-        } catch (IOException | URISyntaxException ex) {
-            Logger.getLogger(UserRepositorio.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-             cmdb.close();
-        }
+        DB db =cmdb.getConnection();
+        DBCollection table = db.getCollection("usuario");
+        BasicDBObject document = new BasicDBObject("_id", entity.getCpf().formatado());
+        document.put("nome", entity.getNome());
+        document.put("email",entity.getEmail() );
+        document.put("senha",entity.getSenha());
+        document.put("telefone",entity.getTelefone());
+        table.insert(document).getN();
+        cmdb.close();
        
     }
 
@@ -53,13 +57,42 @@ public class UserRepositorio implements CrudEntity<User>{
     }
 
     @Override
-    public User find(User id) {
+    public User find(String primaryKey) {
+          
+        DB db = cmdb.getConnection();
+        DBCollection table = db.getCollection("usuario");
+        BasicDBObject query
+	    = new BasicDBObject().append("_id", primaryKey);
+
+	DBCursor result = table.find(query);
+
+	result.hasNext() ;
+            
+            DBObject DBO = result.next();
+             String CPF = DBO.toMap().get("_id").toString();
+             String nome = DBO.toMap().get("nome").toString();
+             String email = DBO.toMap().get("email").toString();
+             String senha = DBO.toMap().get("senha").toString();
+             String telefone = DBO.toMap().get("telefone").toString();
+             cmdb.close();
+            
+           return User.of(nome, email, new CPF(CPF), senha, telefone);
+    }
+
+    @Override
+    public void remove(String primaryKey) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void remove(User id) {
+    public List<User> findAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    @Override
+    public void add(String gson) {
+        add(User.Of(gson));
+    }
+
+   
 }

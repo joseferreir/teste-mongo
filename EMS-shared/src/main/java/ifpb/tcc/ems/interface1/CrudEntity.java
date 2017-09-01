@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ifpb.dac.stateless;
+package ifpb.tcc.ems.interface1;
+
+import java.util.List;
 
 /**
  *
@@ -16,8 +18,10 @@ public interface CrudEntity<T> {
 
     public T update(T entity);
 
-    public T find(T id);
+    public T find(String primaryKey);
 
-    public void remove(T id);
+    public void remove(String primaryKey );
+    
+    public List<T> findAll();
 
 }

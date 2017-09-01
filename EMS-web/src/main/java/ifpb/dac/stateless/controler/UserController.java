@@ -6,9 +6,12 @@
 package ifpb.dac.stateless.controler;
 
 import ifpb.dac.stateless.IFCalculadora;
+import ifpb.dac.stateless.IFUser;
 import java.io.Serializable;
-import javax.enterprise.context.RequestScoped;
+import java.sql.SQLException;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -19,40 +22,8 @@ import javax.inject.Named;
  @Named
  @SessionScoped
 public class UserController implements Serializable{
+     
       @Inject
-    private IFCalculadora calculadora;
-      private int x;
-      private int y;
-      private int result;
-      public String somar(){
-        result =  calculadora.somar(x, y);
-        return null;
-      }
-
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int getResult() {
-        return result;
-    }
-
-    public void setResult(int result) {
-        this.result = result;
-    }
+    private IFUser userService;
       
-    
 }

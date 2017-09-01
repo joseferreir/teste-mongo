@@ -1,4 +1,4 @@
-package ifpb.dac.stateless.entity;
+package ifpb.tcc.ems.entity;
 
 /**
  * @author Ricardo Job

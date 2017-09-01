@@ -3,22 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ifpb.dac.stateless;
+package ifpb.tcc.ems.interface1;
 
-import ifpb.dac.stateless.ten.User;
+import com.google.gson.Gson;
+import ifpb.tcc.ems.entity.User;
+
+
 
 /**
  *
  * @author jose2
  */
+
 public interface IFUser extends CrudEntity<User>{
 
-    public void add(User entity);
-
-    public User update(User entity);
-
-    public User find(User id);
-
-    public void remove(User id);
+  public void add(String gson);
     
 }

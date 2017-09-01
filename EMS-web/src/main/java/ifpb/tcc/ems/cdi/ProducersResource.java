@@ -1,4 +1,4 @@
-package ifpb.dac.stateless.cdi;
+package ifpb.tcc.ems.cdi;
 
 import ifpb.dac.stateless.IFCalculadora;
 import ifpb.dac.stateless.IFUser;

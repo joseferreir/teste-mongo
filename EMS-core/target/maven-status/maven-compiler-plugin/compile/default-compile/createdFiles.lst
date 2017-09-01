@@ -1,7 +1,4 @@
-ifpb/dac/stateless/repository/UserRepositorio.class
-ifpb/dac/stateless/entity/CPF.class
-ifpb/dac/stateless/services/CalculadoraImpl.class
-ifpb/dac/stateless/entity/NovoClass.class
-ifpb/dac/stateless/entity/User.class
-ifpb/dac/stateless/infra/ConectionMongoDB.class
-ifpb/dac/stateless/services/IFUserImpl.class
+ifpb/tcc/ems/entity/NovoClass.class
+ifpb/tcc/ems/infra/ConectionMongoDB.class
+ifpb/tcc/ems/repository/UserRepositorio.class
+ifpb/tcc/ems/services/IFUserImpl.class

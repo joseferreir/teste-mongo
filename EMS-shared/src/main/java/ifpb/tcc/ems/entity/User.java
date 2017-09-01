@@ -3,14 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ifpb.dac.stateless.entity;
+package ifpb.tcc.ems.entity;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import java.io.Serializable;
-import java.util.Map;
 import java.util.Objects;
-import org.json.JSONObject;
 
 /**
  *
@@ -18,42 +15,39 @@ import org.json.JSONObject;
  */
 public class User implements Serializable {
 
-    private Gson gson;
+    Gson gson;
     private String nome;
     private String email;
     private CPF cpf;
     private String senha;
-    private Map<String, Object> opcionais;
+    private String telefone;
+   
 
-    private User(String nome, String email, CPF cpf, String senha, Map<String, Object> opcionais) {
-
+    protected User( String nome, String email, CPF cpf, String senha, String telefone) {
+        
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
         this.senha = senha;
-        this.opcionais = opcionais;
+        this.telefone = telefone;
+       
     }
 
-    public static User of(String nome, String email, CPF cpf, String senha, Map<String, Object> opcionais) {
+    
 
-        User user = new User(nome, email, cpf, senha, opcionais);
+    public static User of(String nome, String email, CPF cpf, String senha,String telefone) {
 
-        if (!user.cpf.isValid()) {
-            return user;
-        }
-        return null;
+        User user = new User(nome, email, cpf, senha, telefone);
+
+       return user;
     }
 
-    public static User gsonOf(Gson dados) {
+    public static User Of(String dados) {
         User user = new User().convertGsonToUser(dados);
-
-        if (!user.cpf.isValid()) {
-            return user;
-        }
-        return null;
+return user;
     }
 
-    private User() {
+    public User() {
 
     }
 
@@ -69,19 +63,27 @@ public class User implements Serializable {
         return cpf;
     }
 
-    public Map<String, Object> getOpcionais() {
-        return opcionais;
-    }
-
-    public Gson convertUserToGson() {
+  
+    public String convertUserToGson() {
       
-Gson  gson = new Gson().fromJson(this.toString(), Gson.class);
-return gson;
+Gson gson = new Gson();
+ 
+	// converte objetos Java para JSON e retorna JSON como String
+	String json = gson.toJson(this);
+        return json;
     }
 
-    public User convertGsonToUser(Gson uGson) {
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public User convertGsonToUser(String uGson) {
         gson = new Gson();
-        return gson.fromJson(uGson.toString(), User.class);
+        return gson.fromJson(uGson, User.class);
 
     }
 
@@ -113,9 +115,7 @@ return gson;
         this.cpf = cpf;
     }
 
-    public void setOpcionais(Map<String, Object> opcionais) {
-        this.opcionais = opcionais;
-    }
+   
 
     @Override
     public int hashCode() {
@@ -155,7 +155,7 @@ return gson;
 
     @Override
     public String toString() {
-        return "User{" + "nome=" + nome + ", email=" + email + ", cpf=" + cpf + ", senha=" + senha + ", opcionais=" + opcionais + '}';
+        return "User{" + "nome=" + nome + ", email=" + email + ", cpf=" + cpf + ", senha=" + senha + ", opcionais="  + '}';
     }
 
 }

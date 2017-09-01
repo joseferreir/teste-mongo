@@ -3,9 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ifpb.dac.stateless.entity;
-
-import ifpb.dac.stateless.repository.UserRepositorio;
+package ifpb.tcc.ems.entity;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import ifpb.tcc.ems.interface1.CrudEntity;
+import ifpb.tcc.ems.interface1.IFUser;
+import ifpb.tcc.ems.repository.UserRepositorio;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,18 +19,23 @@ import java.util.Map;
  * @author jose2
  */
 public class NovoClass {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, URISyntaxException {
         Map<String,Object> m =new HashMap();
         m.put("matricula", "231467");
         m.put("formação", "DR.");
         
-        User u =  User.of("pedro34", "este@gmail.com",
-                new CPF("35693234533"), "sewnn3333", m);
-        String ee = u.convertUserToGson();
+        User u =  User.of("maria", "este@gmail.com",
+                new CPF("12345678901"), "senha3333","(83)91111-9999");
         System.err.println("-----> \n\n\n\n");
-        System.err.println("eeeeee "+ee);
-//        
-//        UserRepositorio repositorio = new UserRepositorio();
-//        repositorio.add(u);
+      
+        System.err.println("usuario "+u.convertUserToGson());
+        
+        IFUser repositorio = new UserRepositorio();
+        GsonBuilder g =new GsonBuilder();
+        
+        
+        
+        repositorio.add(u.convertUserToGson());
+        System.err.println("usuario "+ repositorio.find("123.456.789-09"));
     }
 }
