@@ -24,7 +24,7 @@ public class participante extends User {
     public static participante Of(Map<String, Object> opcionais, String nome, String email, CPF cpf, String senha, String telefone) {
         return new participante(opcionais, nome, email, cpf, senha, telefone);
     }
-      public static participante  Of(Gson dados){
+      public static participante  Of(String dados){
          return new participante().convertGsonToUser(dados);
          
      }
@@ -44,10 +44,10 @@ public class participante extends User {
     }
 
     @Override
-    public participante convertGsonToUser(Gson uGson) {
+    public participante convertGsonToUser(String uGson) {
 
         gson = new Gson();
-        return gson.fromJson(uGson.toString(), participante.class);
+        return gson.fromJson(uGson, participante.class);
 
     }
 

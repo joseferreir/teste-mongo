@@ -32,7 +32,7 @@ public class Organizador extends User {
         return new Organizador(foto, curriculumLattes, nome, email, cpf, senha, telefone, opcionais);
     }
 
-    public static Organizador Of(Gson dados) {
+    public static Organizador Of(String dados) {
         return new Organizador().convertGsonToUser(dados);
 
     }
@@ -48,7 +48,7 @@ public class Organizador extends User {
     }
 
     @Override
-    public Organizador convertGsonToUser(Gson uGson) {
+    public Organizador convertGsonToUser(String uGson) {
 
         gson = new Gson();
         return gson.fromJson(uGson.toString(), Organizador.class);
