@@ -21,7 +21,7 @@ import javax.ejb.Stateless;
 @Stateless
 @Remote(IFUser.class)
 public class IFUserImpl implements IFUser {
-    @EJB( beanInterface = UserRepositorio.class)
+    @EJB(beanName = "UserRepository")
     IFUser repository;
 
     @Override

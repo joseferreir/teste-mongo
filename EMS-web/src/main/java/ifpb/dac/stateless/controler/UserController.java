@@ -5,9 +5,12 @@
  */
 package ifpb.dac.stateless.controler;
 
-import ifpb.dac.stateless.IFUser;
+import ifpb.tcc.ems.entity.User;
+import ifpb.tcc.ems.interface1.IFUser;
+import ifpb.tcc.ems.util.Mensagem;
 import java.io.Serializable;
-import javax.enterprise.context.SessionScoped;
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -15,14 +18,41 @@ import javax.inject.Named;
  *
  * @author jose2
  */
- @Named
- @SessionScoped
+@Named
+@RequestScoped
 public class UserController implements Serializable{
-     
-      @Inject
+
+    private User user;
+    @Inject
     private IFUser userService;
-      public String salvar(){
-     return null;
- }
-      
+    @Inject
+    private Mensagem mensagem;
+
+    @PostConstruct
+    private void init() {
+        this.user = new User();
+    }
+
+    public String salvar() {
+        try {
+            user.setNome("José Ferreira V");
+            userService.add(user);
+            mensagem.addMessage(null, "Cadastro realizado com sucesso!");
+        } catch (Exception e) {
+            mensagem.addMessage(null, "Erro");
+        }
+        return "index";
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+    public User find(){
+        return userService.find("123.456.789-01");
+    }
+
 }

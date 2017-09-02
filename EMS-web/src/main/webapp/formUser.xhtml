@@ -1,44 +1,43 @@
 <!DOCTYPE html>
 <html 
-	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-            
-        xmlns:p="http://primefaces.org/ui"
-        xmlns:h="http://xmlns.jcp.org/jsf/html">
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <ui:composition template="template/Layout.xhtml">
-	<ui:define name="head">
-		Cadastro
-	</ui:define>
+        <ui:define name="head">
+            Cadastro
+        </ui:define>
 
-    <ui:define name="body">
-          <h:form>
-            <p:messages id="messages" />
-            <p:panelGrid columns="2">
-                  <p:outputLabel for="id" value="ID:" />
-                  <p:spinner id="id" value="#{UsuarioMB.usuario.id}" />
-   
-                  
-                  <p:outputLabel for="nome" value="Nome:" />
-                  <p:inputText id="nome" value="#{UsuarioMB.usuario.nome}" />
-   
-                  
-                  <p:outputLabel for="senha" value="Senha:" />
-                  <p:inputText id="senha" value="#{UsuarioMB.usuario.senha}" />
-   
-                  
-                  <p:outputLabel for="descricao" value="Descrição:" />
-                  <p:inputTextarea id="descricao"
-                       value="#{UsuarioMB.usuario.descricao}" />
-   
-                  <p:commandButton  value="Cadastrar" icon="ui-icon-star" 
-                   action="#{UsuarioMB.cadastraUsuario}" update="messages">
-                  </p:commandButton>
-   
-            </p:panelGrid>
-       </h:form>
-        
-    </ui:define>
-    	
-</ui:composition>
+        <ui:define name="body">
+            <h:form>
+                <p:panel header="Cadastro de Usuário">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        
+                        <h:outputText value="Nome Completo: " />  
+                        <p:keyboard value="#{userController.user.nome}"   /> 
+                        <h:outputText value="CPF: " />  
+                        <p:keyboard value="#{userController.user.cpf.valor}"   /> 
+                        
+                         <h:outputText value="Telefone: " />
+                         <p:inputMask value="#{userController.user.telefone}" mask="(99) 9999-9999"  />
+                        
+                        <h:outputText value="Email: " />  
+                        <p:keyboard value="#{userController.user.email}"  />  								
+                        <h:outputText value="Senha: " />  
+                        <p:password value="#{userController.user.senha}"  
+                                   />  
+
+                        <p:commandButton value="Limpar" type="reset" />
+                        <p:commandButton value="Enviar" action="#{userController.salvar()}"			  
+                                         type="Submit"   />
+                    </h:panelGrid>
+                </p:panel>				   
+            </h:form>
+
+        </ui:define>
+
+    </ui:composition>
 </html>

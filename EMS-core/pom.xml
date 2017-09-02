@@ -33,7 +33,12 @@
             <groupId>ifpb.dac.EMS</groupId>
             <artifactId>EMS-shared</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <type>jar</type>
+            <exclusions>
+                <exclusion>
+                    <groupId>ifpb.dac.stateless</groupId>
+                    <artifactId>EMS-core</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>javax</groupId>

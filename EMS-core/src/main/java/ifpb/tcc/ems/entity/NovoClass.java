@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 package ifpb.tcc.ems.entity;
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import ifpb.tcc.ems.interface1.CrudEntity;
 import ifpb.tcc.ems.interface1.IFUser;
 import ifpb.tcc.ems.repository.UserRepositorio;
 import java.io.IOException;
@@ -36,6 +34,6 @@ public class NovoClass {
         
         
         repositorio.add(u.convertUserToGson());
-        System.err.println("usuario "+ repositorio.find("123.456.789-09"));
+       // System.err.println("usuario "+ repositorio.find("123.456.789-09"));
     }
 }

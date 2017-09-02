@@ -5,7 +5,6 @@
  */
 package ifpb.tcc.ems.repository;
 
-import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -18,8 +17,6 @@ import ifpb.tcc.ems.interface1.IFUser;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 
@@ -28,7 +25,7 @@ import javax.ejb.Stateless;
  * @author jose2
  */
 @Stateless
-@Local()
+@Local(IFUser.class)
 public class UserRepositorio implements IFUser{
     private ConectionMongoDB cmdb;
 
