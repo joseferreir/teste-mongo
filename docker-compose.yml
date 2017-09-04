@@ -1,22 +1,25 @@
 version: '2'
 services:
-	web:
+	Web:
+		container_name: web
 		build: ./EMS-web
 		image: jose/ems-web
 		ports: 
-		- "8081:8080"
+		    - "8081:8080"
 		links:
 		- "core:lookup-core"
 	core:
+		container_name: core
 		build: ./EMS-core
 		image: jose/ems-core
 		ports: 
 		- "8080:8080"
 		links:
-		- "mongodb:mongo-web"
+		    - "mongodb:hos-mongo"
 	mongodb:
-		image: mongo
-		ports:
-		- "27017:27017"
+		   container_name: mongodb
+		   image: mongo
+		   ports:
+		     - "27017:27017"
 		volumes:
-		- /. #/srv/docker/mongodb:/var/lib/mongodb
+		       - /. #/srv/docker/mongodb:/var/lib/mongodb
