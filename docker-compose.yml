@@ -1,36 +1,22 @@
 version: '2'
 services:
-  postgres:
-    container_name: banco
-    build: ./postgres
-    image: ricardojob/banco
-    ports:
-     - "5433:5432"
-  web:
-    container_name: app
-    build: ./app
-    image: ricardojob/webapp
-    ports: 
-     - "8081:8080"
-    links: 
-     - "postgres:host-banco"
-
-#--------------------------------------
-version: '2'
-services:
-    cliente-web:
-        build: ./EMS-web
-        image: jose/ems-web
-        links:
-        - "mongodb:mongo-web"
-    core:
-        build: ./EMS-core
-        image: jose/ems-core
-        links:
-        - "mongodb:mongo-web"
-    mongodb:
-        image: mongo
- ports:
-    - "27017:27017"
-  volumes:
-    - /. #/srv/docker/mongodb:/var/lib/mongodb
+	web:
+		build: ./EMS-web
+		image: jose/ems-web
+		ports: 
+		- "8081:8080"
+		links:
+		- "core:lookup-core"
+	core:
+		build: ./EMS-core
+		image: jose/ems-core
+		ports: 
+		- "8080:8080"
+		links:
+		- "mongodb:mongo-web"
+	mongodb:
+		image: mongo
+		ports:
+		- "27017:27017"
+		volumes:
+		- /. #/srv/docker/mongodb:/var/lib/mongodb

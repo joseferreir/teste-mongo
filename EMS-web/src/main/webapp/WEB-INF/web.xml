@@ -38,4 +38,9 @@
 		<extension>woff2</extension>
 		<mime-type>application/x-font-woff2</mime-type>
 	</mime-mapping>
+        
+         <mime-mapping>
+		<extension>woff3</extension>
+		<mime-type>application/fa/fontawesome-webfont</mime-type>
+	</mime-mapping>
 </web-app>

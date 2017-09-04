@@ -48,6 +48,7 @@ return user;
     }
 
     public User() {
+        new CPF();
 
     }
 

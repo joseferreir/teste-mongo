@@ -4,7 +4,8 @@
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 
     xmlns:p="http://primefaces.org/ui"
-    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="template/Layout.xhtml">
         <ui:define name="head">
@@ -15,23 +16,26 @@
             <h:form>
                 <p:panel header="Cadastro de Usuário">
                     <h:panelGrid columns="2" cellpadding="5">
-                        
+
                         <h:outputText value="Nome Completo: " />  
-                        <p:keyboard value="#{userController.user.nome}"   /> 
+                        <p:inputText value="#{controlle.user.nome}"   /> 
                         <h:outputText value="CPF: " />  
-                        <p:keyboard value="#{userController.user.cpf.valor}"   /> 
-                        
-                         <h:outputText value="Telefone: " />
-                         <p:inputMask value="#{userController.user.telefone}" mask="(99) 9999-9999"  />
-                        
+                        <p:inputText value="#{controlle.cpf}"   /> 
+
+                        <h:outputText value="Telefone: " />
+                        <!--<p:inputMask value="#{controlle.user.telefone}" mask="(99) 9999-9999"  />-->
+
                         <h:outputText value="Email: " />  
-                        <p:keyboard value="#{userController.user.email}"  />  								
+                        <h:inputText id="email" value="#{bean.email}" required="true" label="Email" validatorMessage="E-mail incorreto">
+                            <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                        </h:inputText>
+                        <p:message for="email" /> 								
                         <h:outputText value="Senha: " />  
-                        <p:password value="#{userController.user.senha}"  
-                                   />  
+                        <p:password value="#{controlle.user.senha}"  
+                                    />  
 
                         <p:commandButton value="Limpar" type="reset" />
-                        <p:commandButton value="Enviar" action="#{userController.salvar()}"			  
+                        <p:commandButton value="Enviar" action="#{controlle.salvar()}"			  
                                          type="Submit"   />
                     </h:panelGrid>
                 </p:panel>				   
