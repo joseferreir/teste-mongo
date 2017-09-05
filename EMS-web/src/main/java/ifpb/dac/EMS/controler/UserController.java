@@ -19,7 +19,7 @@ import javax.inject.Named;
  */
 @Named
 @RequestScoped
-public class Controlle {
+public class UserController {
 
     private User user;
     private String cpf;
@@ -35,7 +35,7 @@ public class Controlle {
 
     public String salvar() {
         try {
-            user.setNome("José Ferreira V");
+            
             user.getCpf().setValor(cpf);
             userService.add(user);
             mensagem.addMessage(null, "Cadastro realizado com sucesso!");

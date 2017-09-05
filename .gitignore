@@ -1,5 +1,5 @@
 /target/
-/EMScore/target/
+/EMS-core/target/
 /EMS-shared/target/
 /EMS-web/target/
 .DS_Store

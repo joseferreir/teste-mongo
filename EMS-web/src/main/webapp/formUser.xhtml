@@ -23,13 +23,13 @@
                         <p:inputText value="#{controlle.cpf}"   /> 
 
                         <h:outputText value="Telefone: " />
-                        <!--<p:inputMask value="#{controlle.user.telefone}" mask="(99) 9999-9999"  />-->
+                        <p:inputMask value="#{controlle.user.telefone}" mask="(99) 9999-9999"  />
 
                         <h:outputText value="Email: " />  
                         <h:inputText id="email" value="#{bean.email}" required="true" label="Email" validatorMessage="E-mail incorreto">
                             <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
                         </h:inputText>
-                        <p:message for="email" /> 								
+                       								
                         <h:outputText value="Senha: " />  
                         <p:password value="#{controlle.user.senha}"  
                                     />  
