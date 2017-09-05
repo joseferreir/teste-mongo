@@ -30,15 +30,9 @@
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>ifpb.dac.EMS</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>EMS-shared</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>ifpb.dac.stateless</groupId>
-                    <artifactId>EMS-core</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
