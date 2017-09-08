@@ -1,11 +1,13 @@
 package ifpb.tcc.ems.entity;
 
+import java.io.Serializable;
+
 /**
  * @author Ricardo Job
  * @mail ricardo.job@ifpb.edu.br
  * @since 06/06/2017, 09:30:19
  */
-public class CPF {
+public class CPF implements Serializable{
 
     private String valor; // sem pontos, apenas digitos
 

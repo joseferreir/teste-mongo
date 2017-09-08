@@ -8,7 +8,6 @@ package ifpb.tcc.ems.services;
 
 import ifpb.tcc.ems.entity.User;
 import ifpb.tcc.ems.interface1.IFUser;
-import ifpb.tcc.ems.repository.UserRepositorio;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Remote;

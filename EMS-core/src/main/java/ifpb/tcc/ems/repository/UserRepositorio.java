@@ -73,7 +73,7 @@ public class UserRepositorio implements IFUser{
              String telefone = DBO.toMap().get("telefone").toString();
              cmdb.close();
             
-           return User.of(nome, email, new CPF(CPF), senha, telefone);
+           return User.of(nome, email, CPF, senha, telefone);
     }
 
     @Override

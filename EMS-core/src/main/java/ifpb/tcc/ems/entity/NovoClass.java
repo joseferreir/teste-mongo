@@ -7,6 +7,7 @@ package ifpb.tcc.ems.entity;
 import com.google.gson.GsonBuilder;
 import ifpb.tcc.ems.interface1.IFUser;
 import ifpb.tcc.ems.repository.UserRepositorio;
+import ifpb.tcc.ems.services.IFUserImpl;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -23,12 +24,12 @@ public class NovoClass {
         m.put("formação", "DR.");
         
         User u =  User.of("maria", "este@gmail.com",
-                new CPF("12345678901"), "senha3333","(83)91111-9999");
+                "12345674401", "senha3333","(83)91111-9999");
         System.err.println("-----> \n\n\n\n");
       
         System.err.println("usuario "+u.convertUserToGson());
         
-        IFUser repositorio = new UserRepositorio();
+        IFUser repositorio = new IFUserImpl();
         GsonBuilder g =new GsonBuilder();
         
         

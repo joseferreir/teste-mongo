@@ -35,9 +35,9 @@ public class User implements Serializable {
 
     
 
-    public static User of(String nome, String email, CPF cpf, String senha,String telefone) {
+    public static User of(String nome, String email, String cpf, String senha,String telefone) {
 
-        User user = new User(nome, email, cpf, senha, telefone);
+        User user = new User(nome, email, new CPF(cpf), senha, telefone);
 
        return user;
     }

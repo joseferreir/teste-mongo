@@ -18,20 +18,20 @@
                     <h:panelGrid columns="2" cellpadding="5">
 
                         <h:outputText value="Nome Completo: " />  
-                        <p:inputText value="#{userController.user.nome}"   /> 
+                        <p:inputText value="#{userController.nome}"   /> 
                         <h:outputText value="CPF: " />  
                         <p:inputText value="#{userController.cpf}"   /> 
 
                         <h:outputText value="Telefone: " />
-                        <p:inputMask value="#{userController.user.telefone}" mask="(99) 9999-9999"  />
+                        <p:inputMask value="#{userController.telefone}" mask="(99) 9999-9999"  />
 
                         <h:outputText value="Email: " />  
-                        <h:inputText id="email" value="#{userController.user.email}" required="true" label="Email" validatorMessage="E-mail incorreto">
+                        <h:inputText id="email" value="#{userController.email}" required="true" label="Email" validatorMessage="E-mail incorreto">
                             <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
                         </h:inputText>
                        								
                         <h:outputText value="Senha: " />  
-                        <p:password value="#{userController.user.senha}"  
+                        <p:password value="#{userController.senha}"  
                                     />  
 
                         <p:commandButton value="Limpar" type="reset" />

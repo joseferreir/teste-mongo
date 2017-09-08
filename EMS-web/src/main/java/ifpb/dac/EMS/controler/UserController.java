@@ -8,7 +8,6 @@ package ifpb.dac.EMS.controler;
 import ifpb.tcc.ems.entity.User;
 import ifpb.tcc.ems.interface1.IFUser;
 import ifpb.tcc.ems.util.Mensagem;
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -21,37 +20,33 @@ import javax.inject.Named;
 @RequestScoped
 public class UserController {
 
-    private User user;
+    
     private String cpf;
+    private String nome;
+    private String email;
+    private String senha;
+    private String telefone;
+
     @Inject
     private IFUser userService;
     @Inject
     private Mensagem mensagem;
 
-    @PostConstruct
-    private void init() {
-        this.user = new User();
-    }
+   
 
     public String salvar() {
         try {
             
-            user.getCpf().setValor(cpf);
-            userService.add(user);
+            
+            userService.add( User.of(nome, email, cpf, senha, telefone));
             mensagem.addMessage(null, "Cadastro realizado com sucesso!");
         } catch (Exception e) {
-            mensagem.addMessage(null, "Erro");
+            mensagem.addMessage(null, "Erro de" +e.getMessage());
         }
         return "index";
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+   
 
     public String getCpf() {
         return cpf;
@@ -59,6 +54,46 @@ public class UserController {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public Mensagem getMensagem() {
+        return mensagem;
+    }
+
+    public void setMensagem(Mensagem mensagem) {
+        this.mensagem = mensagem;
     }
 
     public User find() {

@@ -11,7 +11,7 @@ import javax.enterprise.inject.Produces;
 @ApplicationScoped
 public class ProducersResource {
     @Produces 
-    @Resource(lookup = "java:global/EMS-core/IFUserImpl")
+    @Resource(lookup = "java:global/EMS-core/IFUserImpl!ifpb.tcc.ems.interface1.IFUser")
     private IFUser userService;
 
 }
