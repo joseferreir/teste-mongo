@@ -18,24 +18,24 @@
                     <h:panelGrid columns="2" cellpadding="5">
 
                         <h:outputText value="Nome Completo: " />  
-                        <p:inputText value="#{controlle.user.nome}"   /> 
+                        <p:inputText value="#{userController.user.nome}"   /> 
                         <h:outputText value="CPF: " />  
-                        <p:inputText value="#{controlle.cpf}"   /> 
+                        <p:inputText value="#{userController.cpf}"   /> 
 
                         <h:outputText value="Telefone: " />
-                        <p:inputMask value="#{controlle.user.telefone}" mask="(99) 9999-9999"  />
+                        <p:inputMask value="#{userController.user.telefone}" mask="(99) 9999-9999"  />
 
                         <h:outputText value="Email: " />  
-                        <h:inputText id="email" value="#{bean.email}" required="true" label="Email" validatorMessage="E-mail incorreto">
+                        <h:inputText id="email" value="#{userController.user.email}" required="true" label="Email" validatorMessage="E-mail incorreto">
                             <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
                         </h:inputText>
                        								
                         <h:outputText value="Senha: " />  
-                        <p:password value="#{controlle.user.senha}"  
+                        <p:password value="#{userController.user.senha}"  
                                     />  
 
                         <p:commandButton value="Limpar" type="reset" />
-                        <p:commandButton value="Enviar" action="#{controlle.salvar()}"			  
+                        <p:commandButton value="Enviar" action="#{userController.salvar()}"			  
                                          type="Submit"   />
                     </h:panelGrid>
                 </p:panel>				   
