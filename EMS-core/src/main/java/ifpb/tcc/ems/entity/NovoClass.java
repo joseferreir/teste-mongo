@@ -24,12 +24,12 @@ public class NovoClass {
         m.put("formação", "DR.");
         
         User u =  User.of("maria", "este@gmail.com",
-                "12345674401", "senha3333","(83)91111-9999");
+                "100000022", "senha3333","(83)91111-9999");
         System.err.println("-----> \n\n\n\n");
       
         System.err.println("usuario "+u.convertUserToGson());
         
-        IFUser repositorio = new IFUserImpl();
+        IFUser repositorio = new UserRepositorio();
         GsonBuilder g =new GsonBuilder();
         
         

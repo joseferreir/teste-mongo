@@ -1,8 +1,9 @@
 package ifpb.tcc.ems.cdi;
 
 import ifpb.tcc.ems.interface1.IFUser;
-import javax.annotation.Resource;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
+import javax.enterprise.inject.Default;
 import javax.enterprise.inject.Produces;
 
 /**
@@ -10,8 +11,13 @@ import javax.enterprise.inject.Produces;
  */
 @ApplicationScoped
 public class ProducersResource {
-    @Produces 
-    @Resource(lookup = "java:global/EMS-core/IFUserImpl!ifpb.tcc.ems.interface1.IFUser")
-    private IFUser userService;
+    private static final String RESOURCE = "java:global/EMS-core/IFUserImpl!ifpb.tcc.ems.interface1.IFUser";
+    
+    @Produces
+    @Dependent
+    @Default
+    private IFUser getContactService() {
+        return  new ServiceLocator().lookup(RESOURCE, IFUser.class);
+    }
 
 }
